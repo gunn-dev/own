@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue@3</title>
+</head>
+<body>
+	
+	<div id="counter">
+		Counter : {{ counter }}
+	</div>
+
+	<div id="bind-attribute">
+		<span :title="message">
+			Hover your mouse over me for a few second.
+		</span>
+	</div>
+
+	<div id="computed-basics">
+		<p>Has published books: </p>
+		<span>{{ publishedBooksMessage }}</span>
+		<p> {{ now }}</p>
+		<p> {{ fullName}} </p>
+	</div>
+
+	<ul id="array-with-index">
+		<li v-for="(item, index) in items">
+			{{ parentMessage }} - {{ index }} - {{ item.message }}
+		</li>
+	</ul>
+
+	<div id="multiple-checkboxes">
+		<input type="checkbox" id="jack" value="Jack" v-model="checkNames">
+		<label for="jack">Jack</label>
+		<input type="checkbox" id="john" value="John" v-model="checkNames">
+		<label for="john">John</label>
+		<input type="checkbox" id="jeff" value="Jeff" v-model="checkNames">
+		<label for="jeff">Jeff</label>
+		<br>
+		<span>Checked names: {{ checkNames }} </span>
+	</div>
+
+	<div id="components-demo">
+		<button-counter></button-counter>
+	</div>
+
+	<div id="blog-post-demo">
+		<div :style="{fontSize: postFontSize + 'em'}">
+			<blog-post
+			v-for="post in posts"
+			:key="post.id"
+			:title="post.title"
+			@enlarge-text="postFontSize += 0.1"
+			></blog-post>
+		</div>
+	</div>
+
+	<div id="provide-demo">
+		<todo-list>
+			<todo-list-statistics>
+				
+			</todo-list-statistics>
+		</todo-list>
+	</div>
+
+
+	<script src="https://unpkg.com/vue@next"></script>
+
+
+	<script>
+		const Counter = {
+			data() {
+				return {
+					counter : 0
+				}
+			},
+			mounted() {
+				setInterval(() => {
+					this.counter++
+				}, 1000)
+			}
+		}
+		Vue.createApp(Counter).mount('#counter')
+
+		const BindAttribute = {
+			data() {
+				return {
+					message: 'You loaded this page on ' + new Date().toLocaleString()
+				}
+			}
+		}
+		const app = Vue.createApp(BindAttribute)
+		const vm = app.mount('#bind-attribute')
+
+		Vue.createApp({
+			data() {
+				return {
+					author: {
+						name: 'John Doe',
+						books: [
+							
+						]
+					},
+					firstName: 'Jon',
+					lastName: 'Doe'
+				}
+			},
+			computed: {
+				publishedBooksMessage() {
+					return this.author.books.length > 0 ? 'Yes' : 'No'
+				},
+				now() {
+					return Date.now()
+				},
+				fullName: {
+					get() {
+						return this.firstName + ' ' + this.lastName
+					},
+					set(newValue) {
+						const names = newValue.split(' ')
+						this.firstName = names[0]
+						this.lastName = names[names.length - 1]
+					}
+				}
+			}
+		}).mount('#computed-basics')
+
+		Vue.createApp({
+			data() {
+				return {
+					parentMessage: 'Parent',
+					items: [ {message: 'Foo'}, {message: 'Bar'}]
+				}
+			}
+		}).mount('#array-with-index')
+
+		Vue.createApp({
+			data() {
+				return {
+					checkNames: []
+				}
+			}
+		}).mount('#multiple-checkboxes')
+
+		const com = Vue.createApp({})
+		com.component('button-counter', {
+			data() {
+				return {
+					count: 0
+				}
+			},
+			template: ` 
+				<button @click="count++">
+					You clicked me {{ count }} times.
+				</button>
+			`
+		})
+		com.mount('#components-demo')
+
+		const blog = {
+			data() {
+				return {
+					posts: [
+						{id: 1, title: 'My journey with Vue'},
+						{id: 2, title: 'Blogging with Vue'},
+						{id: 3, title: 'Why Vue is so fun'}
+					],
+					postFontSize: 1
+				}
+			}
+		}
+		const blog_post = Vue.createApp(blog)
+		blog_post.component('blog-post', {
+			props:['title'],
+			emits: ['enlargeText'],
+			template: ` 
+				<div class="blog-post">
+					<h4>{{title}}</h4>
+					<button @click="$emit('enlargeText')">Enlarge text</button>
+				</div>
+			`
+		})
+		blog_post.mount('#blog-post-demo')
+
+		const provide = Vue.createApp({})
+		provide.component('todo-list', {
+			data() {
+				return {
+					todos: ['Feed a cat', 'Buy tickets'],
+				}
+			},
+			provide: {
+				user: 'Jeff Clay'
+			},
+			template: ` 
+				<div>
+					{{ todos.length }}
+				</div>	
+			`
+		})
+		provide.component('todo-list-statistics', {
+			inject: ['user'],
+			created() {
+				console.log(`Injected property: ${this.user}`)
+			}
+		})
+		provide.mount('#provide-demo')
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Transition</title>
+
+	<style>
+		html, body {
+			margin: 5px;
+			padding: 0;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<div id="app">
+		<div v-changestyle="{color: 'green'}">
+			Passing Value Custom Directive Example
+		</div> <br />
+		<input type="text" v-model="name" placeholder="Enter your name"> <br />
+		<h3>Letter count is: {{name|countletter}}</h3>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		Vue.directive("changestyle", {
+			bind(e, binding, vnode) {
+				console.log(e);
+				console.log(binding.value.color);
+				console.log(vnode);
+				e.style.color = binding.value.color;
+				e.style.fontSize = '20px';
+			}
+		})
+		const vm = new Vue({
+			el: "#app",
+			data: {
+				name: ""
+			},
+			filters: {
+				countletter(value) {
+					return value.length;
+				}
+			}
+		})
+	</script>
+
+</body>
+</html>

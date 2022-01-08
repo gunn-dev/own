@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Key Modifier</title>
+</head>
+<body>
+	<div id="app-1">
+		<input type="text" @keyup.ctrl.enter="showInputValue" placeholder="Type your name here...">
+		<br />
+		<h3>{{ name }}</h3>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		new Vue({
+			el: "#app-1",
+			data: {
+				name: ""
+			},
+			methods: {
+				showInputValue(event) {
+					this.name = event.target.value;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

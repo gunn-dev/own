@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Modifier Binding</title>
+</head>
+<body>
+	
+	<div id="app">
+		<h3>The .number modifier example</h3>
+		<label for="age">Enter Age: </label>
+		<input type="number" v-model.number="age"> <br />
+		Display Age: {{ age}}
+		<hr />
+		<h3>The .lazy modifier example</h3>
+		<label for="message">Enter Message: </label>
+		<input type="text" v-model.lazy="message"> <br>
+		Display Message: {{ message }}
+		<hr />
+		<h3>The .trim modifier example</h3>
+		<label for="trim">Enter Message: </label>
+		<input type="text" v-model.trim="trimMessage"> <br />
+		Display Message: {{ trimMessage }}
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		const vm = new Vue({
+			el: "#app",
+			data: {
+				age: 0,
+				message: "",
+				trimMessage: ""
+			}
+		})
+	</script>
+</body>
+</html>

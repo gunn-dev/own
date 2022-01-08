@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Currency Converter</title>
+
+	<style>
+		html, body {
+			margin: 5px;
+			padding: 0;
+		}		
+	</style>
+
+</head>
+<body>
+
+	<div id="app">
+		<h3>Customer Details</h3>
+		<label for="fname">First Name: </label>
+		<input type="text" v-model="fname" id="fname">
+		<label for="lname">Last Name: </label>
+		<input type="text" v-model="lname" id="lname">
+		<label for="address">Address: </label>
+		<input type="text" v-model="address" id="address">
+		<button @click="addCustomer">Add</button>
+
+		<table></table>
+
+		<cuscomponent
+		v-for="(item, index) in cusData"
+		:item = 'item'
+		:index = 'index'
+		:key = 'item.fname'
+		@removedata="remove"
+		></cuscomponent>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		Vue.component('cuscomponent', {
+			template: ` 
+				<table>
+					<tbody>
+						<tr>
+							<td> {{item.fname}}</td>
+							<td>{{item.lname}}</td>
+							<td>{{item.address}}</td>
+							<td>
+								<button @click="removeitem(index)">x</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			`,
+			props: ['item', 'index'],
+			methods: {
+				removeitem(index) {
+					this.$emit('removedata', index)
+				}
+			}
+		})
+
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				fname: '',
+				lname: '',
+				address: '',
+				cusData: []
+			},
+			methods: {
+				addCustomer() {
+					this.cusData.push({
+						fname: this.fname,
+						lname: this.lname,
+						address: this.address
+					});
+					this.fname = '';
+					this.lname = '';
+					this.address = '';
+				},
+				remove(index) {
+					this.cusData.splice(index, 1);
+				}
+			}
+		});
+		
+	</script>
+
+</body>
+</html>

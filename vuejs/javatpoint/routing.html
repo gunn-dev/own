@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Routing</title>
+
+	<style>
+		html, body {
+			margin: 5px;
+			padding: 0;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<div id="app">
+		<h2>This is Routing Example</h2>
+		<p>
+			<router-link to="/route1">Click on Router Link 1</router-link>
+			<router-link :to="{path:'/route2'}">Click on Router Link 2</router-link>
+			<router-link :to="{path:'/route3', query: {name: 'Alex'}}" replace>This link is replace</router-link>
+
+			<router-view></router-view>
+		</p>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+ 	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>  	
+
+	<script>
+		const Route1 = {
+			template: ` <h3>You are seeing router link 1</h3>`
+		};
+		const Route2 = {
+			template: ` <h3>You are seeing router link 2</h3>`
+		};
+		const Route3 = {
+			template: ` <h3>You are seeing router link 3</h3>`
+		};
+		const routes = [
+			{path: '/route1', component: Route1},
+			{path: '/route2', component: Route2},
+			{path: '/route3', component: Route3}
+		];
+		const router = new VueRouter({
+			routes
+		})
+		const vm = new Vue({
+			el: '#app',
+			router
+		})
+	</script>
+
+</body>
+</html>

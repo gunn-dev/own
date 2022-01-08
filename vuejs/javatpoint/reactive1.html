@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mixins</title>
+
+	<style>
+		html, body {
+			margin: 5px;
+			padding: 0;
+		}		
+	</style>
+
+</head>
+<body>
+
+	<div id="app">
+		<p>Counter value: {{ products.id }}</p>
+		<button @click="products.id++">Click Here</button>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		let myproduct = {"id": 1, name: "shirt", price: "1000.00"};
+
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				counter: 1,
+				products: myproduct
+			}
+		});
+		// vm.products.qty = "1";
+		Vue.set(myproduct, 'qty', 1);
+
+		Vue.delete(myproduct, 'price');
+		
+		console.log(vm);
+
+		vm.$watch('counter', function(nval, oval) {
+			alert('Counter is incremented: ' + oval + ' to ' + nval + '!');
+		});
+		
+	</script>
+
+</body>
+</html>

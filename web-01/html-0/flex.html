@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        header {
+            margin-left: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* align-items: flex-end; */
+            align-content: flex-end;
+            height: 600px;
+            background-color: rgb(109, 114, 114);
+        }
+
+        .gallery img {
+            width: 200px;
+        }
+
+        .gallery figure {
+            margin: 6px;
+        }
+
+        .gallery figure figcaption {
+            text-align: center;
+            background-color: thistle;
+        }
+
+        @media screen and (max-width: 480px) {
+            .gallery img {
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Flex Layout Module</h1>
+        </header>
+
+        <div class="gallery">
+            <figure>
+                <img src="img/download.png" alt="">
+                <figcaption>Fig. 1.0. KFC</figcaption>
+            </figure>
+            <figure>
+                <img src="img/download.png" alt="">
+                <figcaption>Fig. 1.0. KFC</figcaption>
+            </figure>
+            <figure>
+                <img src="img/download.png" alt="">
+                <figcaption>Fig. 1.0. KFC</figcaption>
+            </figure>
+            <figure>
+                <img src="img/download.png" alt="">
+                <figcaption>Fig. 1.0. KFC</figcaption>
+            </figure>
+            <figure>
+                <img src="img/download.png" alt="">
+                <figcaption>Fig. 1.0. KFC</figcaption>
+            </figure>
+            <figure>
+                <img src="img/download.png" alt="">
+                <figcaption>Fig. 1.0. KFC</figcaption>
+            </figure>
+        </div>
+    </div>
+
+</body>
+
+</html>

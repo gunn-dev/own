@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Currency Converter</title>
+
+	<style>
+		html, body {
+			margin: 5px;
+			padding: 0;
+		}		
+	</style>
+
+</head>
+<body>
+
+	<div id="app">
+		<h3>Currency Converter</h3>
+		<label for="amount">Enter Amount: </label>
+		<input type="number" v-model.number="amount" id="amount"> <br /> <br />
+		<label for="convertfrom">Convert From: </label>
+		<select v-model="convertfrom">
+			<option 
+			v-for="(item, index) in currency" 
+			:value="item.name"> {{item.desc}} </option>
+		</select> 
+		<label for="convertto">Converto: </label>
+		<select v-model="convertto">
+			<option 
+			v-for="(item, index) in currency" 
+			:value="item.name"> {{item.desc}} </option>
+		</select> 
+		<p>{{amount}} {{convertfrom}} equals {{finalamount}} {{convertto}}</p>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		
+		const vm = new Vue({
+			el: "#app",
+			data: {
+				amount: 0,
+				currency: [
+					{ name: "USD", desc: "US Dollar"},
+					{ name: "EUR", desc: "Euro"},
+					{ name: "INR", desc: "Indian Rupee"},
+					{ name: "BHD", desc: "Bahraini Dinar"}
+				],
+				convertfrom: 'USD',
+				convertto: 'EUR'
+			},
+			computed: {
+				finalamount() {
+					let to = this.convertto;
+					let from = this.convertfrom;
+					let final;
+					switch(from) {
+						case "USD":
+							if (to == "USD")
+								final = this.amount;
+							if (to == "EUR")
+								final = this.amount * 2;
+							if (to == "INR")
+								final = this.amount * 3;
+							if (to == "BHD")
+								final = this.amount * 5;
+							break;
+						case "EUR":
+							if (to == "USD")
+								final = this.amount * 0.8;
+							if (to == "EUR")
+								final = this.amount;
+							if (to == "INR")
+								final = this.amount * 9;
+							if (to == "BHD")
+								final = this.amount * 10;
+							break;
+						case "INR":
+							if (to == "USD")
+								final = this.amount * 0.9;
+							if (to == "EUR")
+								final = this.amount * 9.1;
+							if (to == "INR")
+								final = this.amount;
+							if (to == "BHD")
+								final = this.amount * 1.2;
+							break;
+						case "BHD":
+							if (to == "USD")
+								final = this.amount * 1.9;
+							if (to == "EUR")
+								final = this.amount * 2.9;
+							if (to == "INR")
+								final = this.amount * 2.1;
+							if (to == "BHD")
+								final = this.amount;
+							break;
+						default: "Error"
+					}
+					return final;
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

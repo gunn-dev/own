@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mixins</title>
+</head>
+<body>
+	<!-- This file use Vue 3 -->
+	<div id="app">
+		
+	</div>
+	
+	<script src="https://unpkg.com/vue@next"></script>
+
+	<script>
+		const myMixin = {
+			data() {
+				return {
+					message: 'hello',
+					foo: 'abc'
+				}
+			}
+		};
+		const app = Vue.createApp({
+			mixins: [myMixin],
+			data() {
+				return {
+					message: 'goodbye',
+					bar: 'def'
+				}
+			},
+			created() {
+				console.log(this.$data)
+			}
+		});
+		app.mount('#app')
+	</script>
+
+</body>
+</html>

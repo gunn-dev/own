@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Transition</title>
+	<style>
+		html, body {
+			margin: 5px;
+			paddding: 0;
+		}
+		.fade-enter-active, .fade-leave-active {
+			transition: opacity 3s;
+		}
+		.fade-enter, .fade-leave-to {
+			opacity: 0;
+		}
+		.shiftx-enter-active, .shiftx-leave-active {
+			transition: all 2s ease-in-out;
+		}
+		.shiftx-enter, .shiftx-leave-to {
+			transform: translateX(100px);
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+		<p>Click at the below button to see transition effect.</p>
+		<button @click="show = !show">Click Me</button>
+		<transition name="fade">
+			<p v-show="show" :style="styleObj">This is a Fade Transition Example</p>
+		</transition>
+		<transition name="shiftx">
+			<p v-show="show">
+				<img src="images.png" alt="Images">
+			</p>
+		</transition>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		const vm = new Vue({
+			el: "#app",
+			data: {
+				show: true,
+				styleObj: {
+					fontSize: '30px',
+					color: 'red'
+				}
+			}
+		})
+	</script>
+
+</body>
+</html>

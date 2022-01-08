@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Custom Event</title>
+</head>
+<body>
+
+	<div id="app">
+		<p>Language displayed: {{ languageclick }} </p>
+		<button-counter
+		v-for="(item, index) in languages"
+		:item="item"
+		:index="index"
+		@showlanguage="languagedis"
+		></button-counter>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		Vue.component('button-counter', {
+			template: ` 
+				<button @click="selectLang(item)"> {{item}}</button>
+			`,
+			props: ['item'],
+			methods: {
+				selectLang(item) {
+					console.log(item);
+					this.$emit('showlanguage', item);
+				}
+			}
+		});
+		const vm = new Vue({
+			el: "#app",
+			data: {
+				languageclick: "",
+				languages: [
+				"Java", "C", "C++", "Python", "JavaScript", "Angular"
+				]
+			},
+			methods: {
+				languagedis(event) {
+					this.languageclick = event;
+				}
+			}
+		})
+	</script>
+
+</body>
+</html>

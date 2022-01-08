@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #4e73df;
+            overflow-x: hidden;
+            transition: 0.5s;
+            color: #ffffff;
+        }
+
+        .sidebar-small {
+            height: 100%;
+            width: 200px;
+            margin-left: -200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(84, 177, 202);
+            overflow-x: hidden;
+            transition: 0.5s;
+            color: #ffffff;
+
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            color: #ffffff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+            color: yellow;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            border: none;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, .3);
+            left: 100%;
+            top: 2rem;
+            transform: translateX(-50%);
+            cursor: pointer;
+        }
+
+        .openbtn {
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color: rgb(94, 34, 34);
+        }
+
+        .main {
+            transition: margin-left .5s;
+            padding: 16px;
+            margin-left: 200px;
+        }
+
+
+        .main-small {
+            transition: margin-left .5s;
+            padding: 16px;
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside id="mySidebar" class="sidebar">
+        <div class="logo">
+            <h3>Quiz Game CMS</h3>
+        </div>
+        <!-- <a href="javascript:void(0)" class="closebtn" onclick="openNav()">×</a> -->
+
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </aside>
+
+    <div id="main" class="main">
+
+    </div>
+
+    <script>
+        function openNav() {
+            // let w = document.getElementById("mySidebar").style.width;
+            // if (w) {
+            // } else {
+            //     w = "200px";
+            // }
+
+            // if (w == "200px") {
+            //     document.getElementById("mySidebar").style.width = "0";
+            //     document.getElementById("main").style.marginLeft = "0";
+            // } else {
+            //     document.getElementById("mySidebar").style.width = "200px";
+            //     document.getElementById("main").style.marginLeft = "200px";
+            // }
+            const sidebar = document.querySelector('.sidebar');
+            const main = document.querySelector('.main');
+
+            sidebar.classList.toggle('sidebar-small');
+            main.classList.toggle('main-small');
+
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Transition</title>
+	<style>
+		html, body {
+			margin: 5px;
+			paddding: 0;
+		}
+		.shiftx-enter-active {
+			animation: shift-in 2s;
+		}
+		.shiftx-leave-active {
+			animation: shift-in 2s reverse;
+		}
+		@keyframes shift-in {
+			0% {transform: rotateX(0deg);}
+			25% {transform: rotateX(90deg);}
+			50% {transform: rotateX(120deg);}
+			75% {transform: rotateX(180deg);}
+			100% {transform: rotateX(360deg);}
+
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+		<p>Click at the below button to see transition effect.</p>
+		<button @click="show = !show">Click Me</button>
+		
+		<transition name="shiftx">
+			<p v-show="show">
+				<img src="images.png" alt="Images">
+			</p>
+		</transition>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		const vm = new Vue({
+			el: "#app",
+			data: {
+				show: true
+			}
+		})
+	</script>
+
+</body>
+</html>

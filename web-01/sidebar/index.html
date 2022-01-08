@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(84, 177, 202);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            border: none;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, .3);
+            left: 100%;
+            top: 2rem;
+            transform: translateX(-50%);
+            cursor: pointer;
+        }
+
+        .openbtn {
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color: rgb(94, 34, 34);
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+            margin-left: 200px;
+        }
+
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+            .sidebar a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="mySidebar" class="sidebar">
+        <!-- <a href="javascript:void(0)" class="closebtn" onclick="openNav()">×</a> -->
+
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+        <h2>Collapsed Sidebar</h2>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat perspiciatis, quia at iure velit
+            ducimus porro dicta pariatur unde voluptates accusamus laborum asperiores modi aspernatur ipsam, tempore quo
+            dolor?</p>
+
+    </div>
+
+    <script>
+        function openNav() {
+            let w = document.getElementById("mySidebar").style.width;
+            if (w) {
+            } else {
+                w = "200px";
+            }
+
+            if (w == "200px") {
+                document.getElementById("mySidebar").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            } else {
+                document.getElementById("mySidebar").style.width = "200px";
+                document.getElementById("main").style.marginLeft = "200px";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mixins</title>
+</head>
+<body>
+
+	<div id="app">
+		<testcomponent :elementtype = "'div,red,25,div1'">Hello Rahul!</testcomponent>  
+	   <testcomponent :elementtype = "'h2,brown,25,div1'">Hello James!</testcomponent>  
+	   <testcomponent :elementtype = "'p,blue,25,ptag'">Hello Alex!</testcomponent>  
+	   <testcomponent :elementtype = "'div,green,25,divtag'">Hello Priti!</testcomponent>  
+	   <testcomponent :elementtype = "'h4,blue,25,ptag'">Hello Mohan!</testcomponent> 
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		Vue.component('testcomponent', {
+			render(createElement) {
+				let a = this.elementtype.split(",");
+				return createElement(a[0], {
+					attrs: {
+						id: a[3],
+						style: "color:"+a[1]+"; font-size:"+ a[2]+";"
+					}
+				},
+				this.$slots.default
+				)
+			},
+			props: {
+				elementtype: {
+					type: String,
+					required: true
+				}
+			}
+		});
+		const vm = new Vue({
+			el: '#app'
+		})
+	</script>
+
+</body>
+</html>

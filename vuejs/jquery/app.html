@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery API Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>API Test</h1>
+
+    <button>Click Me</button>
+
+    <script>
+        $(document).ready(function(){
+            $('button').click(function() {
+                $.ajax({
+                    url: "https://reqres.in/api/users/1",
+                    type: "POST",
+                    data: {
+                        name: "Jeff Clay",
+                        movies: ["She's dating the Gangster", "Romance"]
+                    },
+                    success: function(response){
+                        console.log(response);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

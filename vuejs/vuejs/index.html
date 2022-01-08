@@ -1,0 +1,79 @@
+<html>
+   <head>
+      <title>VueJs Introduction</title>
+      <style>
+         .is-loading { background: red }
+      </style>
+   </head>
+   <body>
+      
+      <div id="root">
+
+         <ul>
+            <li v-for="name in names" v-text="name"></li>
+         </ul>
+
+         <input type="text" v-model="newName">
+         <button id="button" @click="addName">Add Name</button>
+         <button id="remove" v-on:click="removeName">Remove</button>
+         <br><br>
+         <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Click Me</button>
+         <br><br>
+
+         <h2>All Tasks</h2>
+         <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+         </ul>
+
+         <h2>Incomplete Tasks</h2>
+         <ul>
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+         </ul>
+
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+      <script>
+         var app = new Vue({
+            el: '#root',
+            data: {
+               newName: '',
+               names: ['James', 'Bone', 'Adele', 'Son'],
+               isLoading: false,
+               tasks: [
+                  { description: 'Go to the store.', complete: true },
+                  { description: 'Finish screen cast', complete: true },
+                  { description: 'how are you.', complete: false },
+                  { description: 'Im fine thank you.', complete: false },
+                  { description: 'See you there', complete: true },
+               ]
+            },
+
+            methods: {
+               addName() {
+                  this.names.push(this.newName);
+                  this.newName = ''
+               },
+               removeName() {
+                  this.names.pop();
+               },
+               toggleClass() {
+                  this.isLoading = true;
+               }
+            },
+
+            computed: {
+               incompleteTasks() {
+                  return this.tasks.filter(task => ! task.complete);
+               }
+            },
+
+         })
+
+        
+      </script>
+
+
+   </body>
+</html>

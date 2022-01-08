@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>to-do-list</title>
+</head>
+<body>
+	
+	<div id="to-do-list">
+		<form v-on:submit.prevent="addNewTodo">
+			<label for="new-todo">Add a todo</label><br>
+			<input v-model="newTodo" id="new-todo" placeholder="Eg. Feed the cat"><br>
+			<button>Add</button>
+		</form>
+		<ul>
+			<todo-item
+				v-for="(todo, index) in todos"
+				:key="todo.id"
+				:title="todo.title"
+				@remove="todos.splice(index, 1)"
+			></todo-item>
+		</ul>
+	</div>
+
+	<script src="https://unpkg.com/vue@next"></script>
+
+	<script>
+		const app = Vue.createApp({
+			data() {
+				return {
+					newTodo: '',
+					todos: [
+					{
+						id: 1,
+						title: 'Do the Dishes'
+					},
+					{
+						id: 2,
+						title: 'Do exercises'
+					}],
+					nextTodoId: 3
+				}
+			},
+			methods: {
+				addNewTodo() {
+					this.todos.push({
+						id: this.nextTodoId++,
+						title: this.newTodo
+					})
+					this.newTodo = ''
+				}
+			}
+		})
+
+		app.component('todo-item', {
+			template: ` 
+				<li>
+					{{ title }}
+					<button @click="$emit('remove')">Remove</button>
+				</li>
+			`,
+			props: ['title'],
+			emits: ['remove']
+		})
+
+		app.mount('#to-do-list')
+	</script>
+
+</body>
+</html>

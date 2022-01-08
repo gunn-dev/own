@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mixins</title>
+</head>
+<body>
+
+	<!-- Event Binding in Vue.js Render function -->
+
+	<div id="app">
+		
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+
+	<script>
+		
+		const vm = new Vue({
+			el: '#app',
+			data() {
+				return {
+					clickCount: 0
+				}
+			},
+			methods: {
+				onClick() {
+					this.clickCount += 1;
+				}
+			},
+			render(a) {
+				const button = a('button', {
+					on: {
+						click: this.onClick
+					}
+				}, 'Click Me');
+
+				const counter = a('span', [
+					'Number of clicks: ',
+					this.clickCount
+					]);
+				
+				return a('div', [
+					button, counter
+					])
+			}
+		});
+
+	</script>
+
+</body>
+</html>

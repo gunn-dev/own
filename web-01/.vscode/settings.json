@@ -1,0 +1,13 @@
+{
+  "editor.fontFamily": "Courier 10 Pitch",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.exclude": {
+    ".vscode": true,
+    "web-01.code-workspace": true
+  },
+  "editor.lineHeight": 1.7,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}

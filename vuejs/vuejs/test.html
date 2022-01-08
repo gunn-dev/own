@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VueJS</title>
+</head>
+<body>
+
+	<div id='app'>
+		{{ message }}
+	</div>
+
+	<div id="app1">
+		<span v-bind:title='message'>Hover Me</span>
+	</div>
+
+	<div id="app2">
+		<span v-if='seen'>Now you see me!</span>
+	</div>
+
+	<div id="app3">
+		<p> {{ message }} </p>
+		<button v-on:click="reverseMessage">Reverse Message</button>
+	</div>
+
+	<div id="app4">
+		<p> {{ message }} </p>
+		<input type="text" v-model="message">
+	</div>
+
+  	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 	
+
+    <script>
+    	var app = new Vue({
+    		el: '#app',
+    		data: {
+    			message: 'Hello World'
+    		}
+    	})
+    	var app1 = new Vue({
+    		el: '#app1',
+    		data: {
+    			message: 'You loaded this page on ' + new Date().toLocaleString()
+    		}
+    	})
+    	var app2 = new Vue({
+    		el: '#app2',
+    		data: {
+    			seen: true
+    		}
+    	})
+
+    	var app3 = new Vue({
+    		el: '#app3',
+    		data: {
+    			message: 'Hello Vue.js!'
+    		},
+    		methods: {
+    			reverseMessage: function() {
+    				this.message = this.message.split('').reverse().join('')
+    			}
+    		}
+    	})
+
+    	var app4 = new Vue({
+    		el: '#app4',
+    		data: {
+    			message: 'Hello World'
+    		}
+    	})
+    </script>
+	
+</body>
+</html>
